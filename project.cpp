@@ -18,6 +18,38 @@ class MemoryManager {
 private:
     Block* head;
     int total;
+int totalFree()
+    {
+        int sum = 0;
+        Block* temp = head;
+
+        while (temp != nullptr)
+        {
+            if (temp->free)
+                sum += temp->size;
+
+            temp = temp->next;
+        }
+
+        return sum;
+    }
+
+    int largestFree()
+    {
+        int largest = 0;
+        Block* temp = head;
+
+        while (temp != nullptr)
+        {
+            if (temp->free && temp->size > largest)
+                largest = temp->size;
+
+            temp = temp->next;
+        }
+
+        return largest;
+    }
+
 public:MemoryManager(int Totalsize)
 {
     total=Totalsize;
